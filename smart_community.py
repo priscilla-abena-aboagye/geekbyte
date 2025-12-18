@@ -32,6 +32,36 @@ def add_members():
 
     print("Member added successfully")
 
+# Remove members (heads only)
+def remove_members():
+    print("Remove member")
+    print("-----------------------")
+    user_choice = input("Remove by ID or name? (id/name): ").lower()
+
+    # remove by id
+    if user_choice == "id":
+        id_to_remove = input("Member ID: ")
+        for member in members:
+            if member["id"] == id_to_remove: # compare before removing
+                members.remove(member)
+                member_ids.remove(id_to_remove)
+                print(f"Successfully removed {member['name']}")
+                return
+    # remove by name
+    elif user_choice == "name":
+        name_to_remove = input("Member's name: ").lower()# lower because of comparison
+        for member in members:
+            if member["name"].lower() == name_to_remove:
+                members.remove(member)
+                member_ids.remove(member["id"])
+                print(f"Successfully removed {member['name']}")
+                return
+    else:
+        print("Invalid Choice.")
+        return
+    # member not in the list 
+    print("Member not found") 
+
 
 
 # Main Program
