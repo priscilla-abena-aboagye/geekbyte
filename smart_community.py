@@ -62,7 +62,69 @@ def remove_members():
     # member not in the list 
     print("Member not found") 
 
+# View Members
+def view_members(role):
+    print("View Members")
+    print("-----------------------------")
 
+    # Empty list
+    if len(members) == 0:
+        print("No members")
+
+        # only heads can add
+        if role == "head": 
+            user_choice = input("Do you want to add members? (Y/N): ").lower()
+            if user_choice == "y":
+                add_members()
+        return
+    
+    # Each member
+    for member in members:
+        print(f"ID: {member['id']}")
+        print(f"Name: {member['name']}")
+        print(f"Age: {member['age']}")
+        print()
+
+# Search Member        
+def search_members(role):
+    print("Search Member") 
+    print("----------------------------")
+    user_choice = input("Search by ID or name? (id/name): ").lower()
+    found = False
+
+    if user_choice == "id":
+        search_by_id = input("Enter member ID: ")
+        for member in members:
+            if member["id"] == search_by_id:
+                print(f"ID: {member['id']}")
+                print(f"Name: {member['name']}")
+                print(f"Age: {member['age']}")
+                found = True
+
+    elif user_choice == "name":
+        search_by_name = input("Member's name: ").lower()
+        for member in members:
+            if member["name"].lower() == search_by_name:
+                print(f"ID: {member['id']}")
+                print(f"Name: {member['name']}")
+                print(f"Age: {member['age']}")
+                found = True
+    else:
+        print("Invalid choice")
+        return
+
+    if not found:
+        print("Member not found")
+
+        # only head can add
+        if role == "head":
+            user_choice = input("Do you want to add that member? (Y/N): ").lower()
+            if user_choice == "y":
+                add_members() 
+
+# total members
+def total_members():
+    print(f"Total number of members: {len(members)}")
 
 # Main Program
 
